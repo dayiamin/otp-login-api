@@ -126,11 +126,16 @@ const docTemplate = `{
         "models.OTPLogin": {
             "type": "object",
             "required": [
-                "otp"
+                "otp",
+                "phone_number"
             ],
             "properties": {
                 "otp": {
                     "type": "string"
+                },
+                "phone_number": {
+                    "type": "string",
+                    "maxLength": 12
                 }
             }
         },

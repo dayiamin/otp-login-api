@@ -4,8 +4,12 @@ definitions:
     properties:
       otp:
         type: string
+      phone_number:
+        maxLength: 12
+        type: string
     required:
     - otp
+    - phone_number
     type: object
   models.RequestOTPBody:
     properties:
