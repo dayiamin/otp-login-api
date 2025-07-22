@@ -1,0 +1,96 @@
+basePath: /
+definitions:
+  models.OTPLogin:
+    properties:
+      otp:
+        type: string
+    required:
+    - otp
+    type: object
+  models.RequestOTPBody:
+    properties:
+      phone_number:
+        maxLength: 12
+        type: string
+    required:
+    - phone_number
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: API for OTP-based authentication.
+  title: OTP Auth API
+  version: "1.0"
+paths:
+  /auth/request-otp:
+    post:
+      consumes:
+      - application/json
+      description: Send OTP to the user's phone (printed in logs).
+      parameters:
+      - description: Phone Number
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.RequestOTPBody'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Request OTP
+      tags:
+      - Auth
+  /auth/verify-otp:
+    post:
+      consumes:
+      - application/json
+      description: If OTP is valid, generates JWT token and either logs in the existing
+        user or creates a new user.
+      parameters:
+      - description: OTP verification request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.OTPLogin'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Login successful
+          schema:
+            additionalProperties: true
+            type: object
+        "201":
+          description: New user created
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid input or OTP
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Verify OTP and Login or Register User
+      tags:
+      - Auth
+swagger: "2.0"
