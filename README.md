@@ -9,7 +9,8 @@ A simple OTP AUTH API with GIN framework and GOLANG
 - 🧾 JWT token generation
 - 🗃 SQLite as the database
 - 📦 GORM for ORM and migrations
-- 🧪 OTP Generator And Rate limiter 
+- 🧪 OTP Generator And Rate limiter
+- with Swagger docs 
 
 ---
 
@@ -21,7 +22,8 @@ A simple OTP AUTH API with GIN framework and GOLANG
 ├── internal/handlers/         # Route handler functions (user, post)
 ├── internal/models/           # GORM models (User)
 ├── internal/routes/           # Route setup
-├── internal/utils/            # JWT and OTP and RateLimiting utilities 
+├── internal/utils/            # JWT and OTP and RateLimiting utilities
+├── docs/              # swagger docs
 ├── main.go           # App entry point
 ├── go.mod            # Go modules
 ├── .env              # Environment variables
